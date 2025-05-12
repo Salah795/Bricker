@@ -38,10 +38,10 @@ public class Heart extends Puck {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
         super.onCollisionEnter(other, collision);
-        brickerGameManger.removeObject(this);
-        if(this.brickerGameManger.getLivesCounter().value() < POSSIBLE_LIVES) {
-            this.brickerGameManger.getLivesCounter().increment();
-            brickerGameManger.incrementLivesCounter();
-        }
+//        brickerGameManger.removeObject(this);
+//        if(this.brickerGameManger.getLivesCounter().value() < POSSIBLE_LIVES) {
+//            this.brickerGameManger.getLivesCounter().increment();
+//            brickerGameManger.incrementLivesCounter();
+//        }
     }
 }

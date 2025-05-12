@@ -41,7 +41,7 @@ public class ExtraPaddle extends Paddle{
         this.collisionsCounter++;
         if(this.collisionsCounter == MAX_COLLISIONS) {
             this.counter.decrement();
-            this.brickerGameManger.removePaddle(this);
+            this.brickerGameManger.removeObject(this);
         }
 
     }

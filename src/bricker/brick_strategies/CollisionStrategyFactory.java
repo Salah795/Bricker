@@ -2,8 +2,6 @@ package bricker.brick_strategies;
 
 import bricker.main.BrickerGameManger;
 
-import java.util.concurrent.RecursiveTask;
-
 public class CollisionStrategyFactory {
     private static final int BASIC_COLLISION_STRATEGY_INDEX = 5;
     private static final int PUCKS_COLLISION_STRATEGY_INDEX = 6;
@@ -24,6 +22,8 @@ public class CollisionStrategyFactory {
         if(strategyIndex == TURBO_STRATEGY_INDEX) {
             return new TurboStrategy(brickerGameManger);
         }
-        return new HeartsStrategy(brickerGameManger);
+        if(strategyIndex == HEARTS_STRATEGY_INDEX) {
+            return new HeartsStrategy(brickerGameManger);
+        }
     }
 }
