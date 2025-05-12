@@ -60,22 +60,22 @@ public class BrickerGameManger extends GameManager {
     private static final int PUCKS_PER_BRICK = 2;
     private static final int FALLEN_HEART_VELOCITY = 100;
 
+    private ImageReader imageReader;
+    private SoundReader soundReader;
     private final int brickRows;
     private final int brickCols;
     private final Vector2 paddleSizes;
-    private final Random random;
-    private ImageReader imageReader;
-    private SoundReader soundReader;
     private Renderable heartImage;
     private Ball ball;
     private int turboModeInitialCounter;
     private GameObject[] hearsList;
     private Vector2 windowDimensions;
     private WindowController windowController;
-    private int loseCounter;
+    private Counter loseCounter;
     private TextRenderable livesCounterRenderable;
     private Counter bricksCounter;
     private UserInputListener inputListener;
+    private final Random random;
     private ImageRenderable paddleImage;
     private boolean turboMode;
     private Paddle mainPaddle;
@@ -86,7 +86,7 @@ public class BrickerGameManger extends GameManager {
         this.random = new Random();
         this.brickRows = brickRows;
         this.brickCols = brickCols;
-        this.loseCounter = MAX_LOSE;
+        this.loseCounter = new Counter(MAX_LOSE);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class BrickerGameManger extends GameManager {
         createBall();
 
         //create paddles
-        createPaddle(imageReader);
+        createPaddle();
 
         //create walls
         createWalls();
@@ -120,8 +120,8 @@ public class BrickerGameManger extends GameManager {
         createBricks();
 
         //create hearts
+        this.hearsList = new GameObject[MAX_LOSE + 1];
         this.heartImage = imageReader.readImage(HEART_IMAGE_PATH,true);
-        this.hearsList = new GameObject[MAX_LOSE];
         createHearts();
 
         //create lives counter
@@ -167,14 +167,15 @@ public class BrickerGameManger extends GameManager {
     }
 
     public void createFallenHearts(Vector2 heartLocation) {
+        Sound collisionSound = soundReader.readSound(BALL_COLLISION_SOUND_PATH);
         Heart heart = new Heart(heartLocation, new Vector2(HEART_WIDTH, HEART_HEIGHT), this.heartImage,
-                null, this);
+                collisionSound, this);
         heart.setVelocity(new Vector2(0, FALLEN_HEART_VELOCITY));
         this.gameObjects().addGameObject(heart);
     }
 
-    public void createPaddle(ImageReader imageReader) {
-        this.paddleImage = imageReader.readImage(PADDLE_IMAGE_PATH,false);
+    public void createPaddle() {
+        this.paddleImage = this.imageReader.readImage(PADDLE_IMAGE_PATH,false);
         this.mainPaddle = new Paddle(Vector2.ZERO, this.paddleSizes,
                 paddleImage, inputListener, windowDimensions);
         this.mainPaddle.setCenter(new Vector2(windowDimensions.x() / 2,
@@ -212,8 +213,18 @@ public class BrickerGameManger extends GameManager {
         }
     }
 
+    public void incrementLivesCounter() {
+        System.out.println(loseCounter.value());
+        livesCounterRenderable.setString(Integer.toString(loseCounter.value()));
+        gameObjects().addGameObject(hearsList[loseCounter.value() - 1], Layer.UI);
+    }
+
     public boolean getTurboMode() {
         return this.turboMode;
+    }
+
+    public Counter getLivesCounter() {
+        return this.loseCounter;
     }
 
     private void createBall() {
@@ -284,11 +295,13 @@ public class BrickerGameManger extends GameManager {
     }
 
     private void createHearts() {
-        for(int index = 0; index < MAX_LOSE; index++) {
+        for(int index = 0; index < this.hearsList.length; index++) {
             hearsList[index] = new GameObject(new Vector2((index + 1) * (HEART_WIDTH +
                     DISTANCE_BETWEEN_HEARTS), windowDimensions.y() - HEART_HEIGHT),
                     new Vector2(HEART_WIDTH, HEART_HEIGHT), heartImage);
-            gameObjects().addGameObject(hearsList[index], Layer.UI);
+            if(index < MAX_LOSE) {
+                gameObjects().addGameObject(hearsList[index], Layer.UI);
+            }
         }
     }
 
@@ -312,9 +325,9 @@ public class BrickerGameManger extends GameManager {
     private String checkLose(double ballHeight) {
         if(ballHeight > windowDimensions.y()) {
             ball.setCenter(windowDimensions.mult(WINDOW_CENTER_FACTOR));
-            loseCounter--;
-            livesCounterRenderable.setString(Integer.toString(loseCounter));
-            switch (loseCounter) {
+            loseCounter.decrement();
+            livesCounterRenderable.setString(Integer.toString(loseCounter.value()));
+            switch (loseCounter.value()) {
                 case GREEN_COLOR_COUNTER:
                     livesCounterRenderable.setColor(Color.RED);
                     break;
@@ -324,9 +337,9 @@ public class BrickerGameManger extends GameManager {
                 default:
                     livesCounterRenderable.setColor(Color.GREEN);
             }
-            gameObjects().removeGameObject(hearsList[loseCounter], Layer.UI);
+            gameObjects().removeGameObject(hearsList[loseCounter.value()], Layer.UI);
         }
-        if (loseCounter == 0){
+        if (loseCounter.value() == 0){
             return LOSE_MESSAGE;
         }
         return "";
@@ -337,8 +350,8 @@ public class BrickerGameManger extends GameManager {
             prompt += PLAY_AGAIN_MESSAGE;
             if(windowController.openYesNoDialog(prompt)) {
 
-                this.loseCounter = MAX_LOSE;
-                livesCounterRenderable.setString(Integer.toString(this.loseCounter));
+                this.loseCounter.increaseBy(MAX_LOSE - this.loseCounter.value());
+                livesCounterRenderable.setString(Integer.toString(loseCounter.value()));
                 bricksCounter = new Counter(this.brickCols * this.brickRows);
                 windowController.resetGame();
             } else {
