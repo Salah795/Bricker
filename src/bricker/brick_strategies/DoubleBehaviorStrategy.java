@@ -47,7 +47,7 @@ public class DoubleBehaviorStrategy implements CollisionStrategy {
 
     @Override
     public void onCollision(GameObject first, GameObject second) {
-        for(int index = 0; index < filledStrategies; index++) {
+        for(int index = 0; index < filledStrategies - 1; index++) {
             this.collisionStrategies[index].onCollision(first, second);
         }
     }
