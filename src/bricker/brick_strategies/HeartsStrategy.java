@@ -1,6 +1,6 @@
 package bricker.brick_strategies;
 
-import bricker.main.BrickerGameManger;
+import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 
 /**
@@ -15,15 +15,15 @@ public class HeartsStrategy extends BasicCollisionStrategy{
     /**
      * Constructs a HeartsStrategy with the given game manager.
      *
-     * @param brickerGameManger the game manager to handle brick removal and heart creation
+     * @param brickerGameManager the game manager to handle brick removal and heart creation
      */
-    public HeartsStrategy(BrickerGameManger brickerGameManger) {
-        super(brickerGameManger);
+    public HeartsStrategy(BrickerGameManager brickerGameManager) {
+        super(brickerGameManager);
     }
 
     @Override
     public void onCollision(GameObject first, GameObject second) {
         super.onCollision(first, second);
-        this.brickerGameManger.createFallenHearts(first.getCenter());
+        this.brickerGameManager.createFallenHearts(first.getCenter());
     }
 }

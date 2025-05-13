@@ -1,7 +1,7 @@
 package bricker.brick_strategies;
 
 import bricker.gameobjects.Brick;
-import bricker.main.BrickerGameManger;
+import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 
 /**
@@ -15,15 +15,15 @@ import danogl.GameObject;
 public class BasicCollisionStrategy implements CollisionStrategy {
 
     //Reference to the game manager used to remove bricks and manage game state.
-    protected BrickerGameManger brickerGameManger;
+    protected BrickerGameManager brickerGameManager;
 
     /**
-     * Creates a BasicCollisionStrategy with the given BrickerGameManger.
+     * Creates a BasicCollisionStrategy with the given BrickerGameManager.
      *
-     * @param brickerGameManger the game manager responsible for handling brick removal
+     * @param brickerGameManager the game manager responsible for handling brick removal
      */
-    public BasicCollisionStrategy(BrickerGameManger brickerGameManger) {
-        this.brickerGameManger = brickerGameManger;
+    public BasicCollisionStrategy(BrickerGameManager brickerGameManager) {
+        this.brickerGameManager = brickerGameManager;
     }
 
     /**
@@ -35,6 +35,6 @@ public class BasicCollisionStrategy implements CollisionStrategy {
      * @param second the second GameObject involved in the collision
      */
     public void onCollision(GameObject first, GameObject second) {
-        this.brickerGameManger.removeBrick((Brick) first);
+        this.brickerGameManager.removeBrick((Brick) first);
     }
 }

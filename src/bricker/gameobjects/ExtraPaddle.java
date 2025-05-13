@@ -1,6 +1,6 @@
 package bricker.gameobjects;
 
-import bricker.main.BrickerGameManger;
+import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 import danogl.collisions.Collision;
 import danogl.gui.UserInputListener;
@@ -20,7 +20,7 @@ public class ExtraPaddle extends Paddle{
     private static final int MAX_COLLISIONS = 4;
 
     //Reference to the game manager for handling object removal and accessing window dimensions.
-    private final BrickerGameManger brickerGameManger;
+    private final BrickerGameManager brickerGameManager;
 
     //Tracks the number of collisions this extra paddle has experienced.
     private int collisionsCounter;
@@ -34,13 +34,13 @@ public class ExtraPaddle extends Paddle{
      * @param renderable        The renderable representing the object. Can be null, in which case
      *                          the GameObject will not be rendered.
      * @param inputListener    listener for user input to move the paddle
-     * @param brickerGameManger the game manager used to remove this paddle upon max collisions
+     * @param brickerGameManager the game manager used to remove this paddle upon max collisions
      */
     public ExtraPaddle(Vector2 topLeftCorner, Vector2 dimensions, Renderable renderable,
-                       UserInputListener inputListener, BrickerGameManger brickerGameManger) {
-        super(topLeftCorner, dimensions, renderable, inputListener, brickerGameManger.getWindowDimensions());
+                       UserInputListener inputListener, BrickerGameManager brickerGameManager) {
+        super(topLeftCorner, dimensions, renderable, inputListener, brickerGameManager.getWindowDimensions());
         this.collisionsCounter = 0;
-        this.brickerGameManger = brickerGameManger;
+        this.brickerGameManager = brickerGameManager;
     }
 
     /**
@@ -55,7 +55,7 @@ public class ExtraPaddle extends Paddle{
         super.onCollisionEnter(other, collision);
         this.collisionsCounter++;
         if(this.collisionsCounter == MAX_COLLISIONS) {
-            this.brickerGameManger.removeObject(this);
+            this.brickerGameManager.removeObject(this);
         }
 
     }

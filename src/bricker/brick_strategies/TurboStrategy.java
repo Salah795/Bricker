@@ -1,7 +1,7 @@
 package bricker.brick_strategies;
 
 import bricker.gameobjects.Puck;
-import bricker.main.BrickerGameManger;
+import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 
 /**
@@ -16,17 +16,17 @@ public class TurboStrategy extends BasicCollisionStrategy{
     /**
      * Constructs a TurboStrategy with the specified game manager.
      *
-     * @param brickerGameManger the game manager to handle turbo mode activation
+     * @param brickerGameManager the game manager to handle turbo mode activation
      */
-    public TurboStrategy(BrickerGameManger brickerGameManger) {
-        super(brickerGameManger);
+    public TurboStrategy(BrickerGameManager brickerGameManager) {
+        super(brickerGameManager);
     }
 
     @Override
     public void onCollision(GameObject first, GameObject second) {
         super.onCollision(first, second);
-        if(!(second instanceof Puck) && !brickerGameManger.getTurboMode()) {
-            brickerGameManger.transferBallIntoTurboMode();
+        if(!(second instanceof Puck) && !brickerGameManager.getTurboMode()) {
+            brickerGameManager.transferBallIntoTurboMode();
         }
     }
 }

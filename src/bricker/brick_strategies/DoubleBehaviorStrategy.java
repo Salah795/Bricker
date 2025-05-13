@@ -1,6 +1,6 @@
 package bricker.brick_strategies;
 
-import bricker.main.BrickerGameManger;
+import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 
 import java.util.Random;
@@ -25,7 +25,7 @@ public class DoubleBehaviorStrategy implements CollisionDecorator {
     private static final int POSSIBLE_STRATEGIES = 3;
 
     //Reference to the Bricker game manager for applying collision effects.
-    private final BrickerGameManger brickerGameManger;
+    private final BrickerGameManager brickerGameManager;
 
     //Factory used to create collision strategy instances based on an index.
     private final CollisionStrategyFactory collisionStrategyFactory;
@@ -45,13 +45,13 @@ public class DoubleBehaviorStrategy implements CollisionDecorator {
     /**
      * Constructs the decorator with the given game manager and initializes strategy selection.
      *
-     * @param brickerGameManger the game manager used to remove bricks and handle collisions
+     * @param brickerGameManager the game manager used to remove bricks and handle collisions
      */
-    public DoubleBehaviorStrategy(BrickerGameManger brickerGameManger) {
+    public DoubleBehaviorStrategy(BrickerGameManager brickerGameManager) {
         this.collisionStrategies = new CollisionStrategy[POSSIBLE_STRATEGIES];
         this.currentPossibleIndex = LAST_POSSIBLE_RANDOM_INDEX;
         this.filledStrategies = POSSIBLE_STRATEGIES - 1;
-        this.brickerGameManger = brickerGameManger;
+        this.brickerGameManager = brickerGameManager;
         this.collisionStrategyFactory = new CollisionStrategyFactory();
         this.random = new Random();
         chooseStrategies();
@@ -71,14 +71,14 @@ public class DoubleBehaviorStrategy implements CollisionDecorator {
                 chosenIndex = this.random.nextInt(FIRST_POSSIBLE_RANDOM_INDEX,
                         LAST_POSSIBLE_RANDOM_INDEX);
                 this.collisionStrategies[index] = this.collisionStrategyFactory.buildCollisionStrategy(chosenIndex,
-                        brickerGameManger);
+                        brickerGameManager);
                 chosenIndex = this.random.nextInt(FIRST_POSSIBLE_RANDOM_INDEX,
                         LAST_POSSIBLE_RANDOM_INDEX);
                 this.collisionStrategies[POSSIBLE_STRATEGIES - 1] = this.collisionStrategyFactory.
-                        buildCollisionStrategy(chosenIndex, brickerGameManger);
+                        buildCollisionStrategy(chosenIndex, brickerGameManager);
             } else {
                 this.collisionStrategies[index] = this.collisionStrategyFactory.
-                        buildCollisionStrategy(chosenIndex, brickerGameManger);
+                        buildCollisionStrategy(chosenIndex, brickerGameManager);
             }
         }
     }

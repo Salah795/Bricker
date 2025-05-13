@@ -1,6 +1,6 @@
 package bricker.brick_strategies;
 
-import bricker.main.BrickerGameManger;
+import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 
 /**
@@ -14,10 +14,10 @@ public class PucksStrategy extends BasicCollisionStrategy{
     /**
      * Constructs a PucksStrategy with the given game manager.
      *
-     * @param brickerGameManger the game manager to handle brick removal and puck creation
+     * @param brickerGameManager the game manager to handle brick removal and puck creation
      */
-    public PucksStrategy(BrickerGameManger brickerGameManger) {
-        super(brickerGameManger);
+    public PucksStrategy(BrickerGameManager brickerGameManager) {
+        super(brickerGameManager);
     }
 
     /**
@@ -29,6 +29,6 @@ public class PucksStrategy extends BasicCollisionStrategy{
     @Override
     public void onCollision(GameObject first, GameObject second) {
         super.onCollision(first, second);
-        this.brickerGameManger.createPucks(first.getCenter());
+        this.brickerGameManager.createPucks(first.getCenter());
     }
 }

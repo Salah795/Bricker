@@ -1,6 +1,6 @@
 package bricker.gameobjects;
 
-import bricker.main.BrickerGameManger;
+import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 import danogl.gui.UserInputListener;
 import danogl.gui.rendering.Renderable;
@@ -55,9 +55,9 @@ public class Paddle extends GameObject {
         }
         setVelocity(movmentDirection.mult(MOVMENT_SPEED));
 
-        float rightEdge = windowDimensions.x() - BrickerGameManger.WALL_WIDTH - getDimensions().x();
-        if (this.getTopLeftCorner().x() < BrickerGameManger.WALL_WIDTH){
-            this.setTopLeftCorner(new Vector2(BrickerGameManger.WALL_WIDTH, this.getTopLeftCorner().y()));
+        float rightEdge = windowDimensions.x() - BrickerGameManager.WALL_WIDTH - getDimensions().x();
+        if (this.getTopLeftCorner().x() < BrickerGameManager.WALL_WIDTH){
+            this.setTopLeftCorner(new Vector2(BrickerGameManager.WALL_WIDTH, this.getTopLeftCorner().y()));
         }
         if (this.getTopLeftCorner().x() > rightEdge){
             this.setTopLeftCorner(new Vector2(rightEdge, this.getTopLeftCorner().y()));

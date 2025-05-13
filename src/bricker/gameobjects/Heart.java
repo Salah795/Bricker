@@ -1,6 +1,6 @@
 package bricker.gameobjects;
 
-import bricker.main.BrickerGameManger;
+import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 import danogl.collisions.Collision;
 import danogl.gui.Sound;
@@ -29,11 +29,11 @@ public class Heart extends Puck {
      * @param renderable        The renderable representing the object. Can be null, in which case
      *                          the GameObject will not be rendered.
      * @param collisionSound    the Sound to play when the heart collides with the paddle
-     * @param brickerGameManger the game manager used to remove this heart and update lives
+     * @param brickerGameManager the game manager used to remove this heart and update lives
      */
     public Heart(Vector2 topLeftCorner, Vector2 dimensions, Renderable renderable, Sound collisionSound,
-                 BrickerGameManger brickerGameManger) {
-        super(topLeftCorner, dimensions, renderable, collisionSound, brickerGameManger);
+                 BrickerGameManager brickerGameManager) {
+        super(topLeftCorner, dimensions, renderable, collisionSound, brickerGameManager);
     }
 
     /**
@@ -47,8 +47,8 @@ public class Heart extends Puck {
     @Override
     public boolean shouldCollideWith(GameObject other) {
         if(other.renderer().getRenderable() != null) {
-            return other.renderer().getRenderable().equals(this.brickerGameManger.getPaddleImage()) && (
-                    other.getCenter().y() == brickerGameManger.getMainPaddleHeight());
+            return other.renderer().getRenderable().equals(this.brickerGameManager.getPaddleImage()) && (
+                    other.getCenter().y() == brickerGameManager.getMainPaddleHeight());
         }
         return false;
     }
@@ -63,10 +63,10 @@ public class Heart extends Puck {
      */
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
-        brickerGameManger.removeObject(this);
-        if(this.brickerGameManger.getLivesCounter().value() < POSSIBLE_LIVES) {
-            this.brickerGameManger.getLivesCounter().increment();
-            brickerGameManger.incrementLivesCounter();
+        brickerGameManager.removeObject(this);
+        if(this.brickerGameManager.getLivesCounter().value() < POSSIBLE_LIVES) {
+            this.brickerGameManager.getLivesCounter().increment();
+            brickerGameManager.incrementLivesCounter();
         }
     }
 }

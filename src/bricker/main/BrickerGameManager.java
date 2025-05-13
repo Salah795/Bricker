@@ -20,10 +20,10 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 /**
- * The BrickerGameManger class extends GameManager to implement the classic brick-breaking game.
+ * The BrickerGameManager class extends GameManager to implement the classic brick-breaking game.
  * It handles game initialization, object creation, user input, game updates, and end-of-game logic.
  */
-public class BrickerGameManger extends GameManager {
+public class BrickerGameManager extends GameManager {
     public static final int WALL_WIDTH = 10;
 
     private static final String WINDOW_TITLE = "bricker";
@@ -88,14 +88,14 @@ public class BrickerGameManger extends GameManager {
     private int extraPaddleCounter;
 
     /**
-     * Constructs a new BrickerGameManger with the specified window title, dimensions, and brick configuration.
+     * Constructs a new BrickerGameManager with the specified window title, dimensions, and brick configuration.
      *
      * @param windowTitle      the title of the game window
      * @param windowDimensions the size of the game window as a Vector2 (width, height)
      * @param brickRows        the number of brick rows to generate
      * @param brickCols        the number of brick columns to generate
      */
-    public BrickerGameManger(String windowTitle , Vector2 windowDimensions, int brickRows, int brickCols) {
+    public BrickerGameManager(String windowTitle , Vector2 windowDimensions, int brickRows, int brickCols) {
         super(windowTitle, windowDimensions);
         this.paddleSizes = new Vector2(PADDLE_WIDTH,PADDLE_HEIGHT);
         this.random = new Random();
@@ -495,10 +495,10 @@ public class BrickerGameManger extends GameManager {
     public static void main(String[] args) {
         GameManager gameManager;
         if(args.length == 0) {
-            gameManager = new BrickerGameManger(WINDOW_TITLE, new Vector2(WINDOW_WIDTH,
+            gameManager = new BrickerGameManager(WINDOW_TITLE, new Vector2(WINDOW_WIDTH,
                     WINDOW_HEIGHT), DEFAULT_BRICKS_ROWS, DEFAULT_BRICKS_COLS);
         } else {
-            gameManager = new BrickerGameManger(WINDOW_TITLE, new Vector2(WINDOW_WIDTH,
+            gameManager = new BrickerGameManager(WINDOW_TITLE, new Vector2(WINDOW_WIDTH,
                     WINDOW_HEIGHT), Integer.parseInt(args[BRICKS_ROWS_INDEX]),
                     Integer.parseInt(args[BRICKS_COLS_INDEX]));
         }

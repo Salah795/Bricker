@@ -1,6 +1,6 @@
 package bricker.brick_strategies;
 
-import bricker.main.BrickerGameManger;
+import bricker.main.BrickerGameManager;
 import danogl.GameObject;
 import danogl.util.Vector2;
 
@@ -16,16 +16,16 @@ public class ExtraPaddleStrategy extends BasicCollisionStrategy{
     /**
      * Constructs an ExtraPaddleStrategy with the given game manager.
      *
-     * @param brickerGameManger the game manager to handle brick removal and paddle creation
+     * @param brickerGameManager the game manager to handle brick removal and paddle creation
      */
-    public ExtraPaddleStrategy(BrickerGameManger brickerGameManger) {
-        super(brickerGameManger);
+    public ExtraPaddleStrategy(BrickerGameManager brickerGameManager) {
+        super(brickerGameManager);
     }
 
     @Override
     public void onCollision(GameObject first, GameObject second) {
         super.onCollision(first, second);
-        Vector2 extraPaddleLocation = new Vector2(brickerGameManger.getWindowDimensions().mult(0.5f));
-        brickerGameManger.createExtraPaddle(extraPaddleLocation);
+        Vector2 extraPaddleLocation = new Vector2(brickerGameManager.getWindowDimensions().mult(0.5f));
+        brickerGameManager.createExtraPaddle(extraPaddleLocation);
     }
 }

@@ -1,6 +1,6 @@
 package bricker.brick_strategies;
 
-import bricker.main.BrickerGameManger;
+import bricker.main.BrickerGameManager;
 
 /**
  * Factory to create CollisionStrategy instances based on a strategy index.
@@ -30,26 +30,26 @@ public class CollisionStrategyFactory {
      * Builds a CollisionStrategy implementation corresponding to the given index.
      *
      * @param strategyIndex the index indicating which collision behavior to use
-     * @param brickerGameManger the game manager used to apply the collision effects
+     * @param brickerGameManager the game manager used to apply the collision effects
      * @return a CollisionStrategy instance matching the strategyIndex;
      *         defaults to DoubleBehaviorStrategy if index is unrecognized
      */
-    public CollisionStrategy buildCollisionStrategy(int strategyIndex, BrickerGameManger brickerGameManger) {
+    public CollisionStrategy buildCollisionStrategy(int strategyIndex, BrickerGameManager brickerGameManager) {
         if(strategyIndex <= BASIC_COLLISION_STRATEGY_INDEX) {
-            return new BasicCollisionStrategy(brickerGameManger);
+            return new BasicCollisionStrategy(brickerGameManager);
         }
         if(strategyIndex == PUCKS_COLLISION_STRATEGY_INDEX) {
-            return new PucksStrategy(brickerGameManger);
+            return new PucksStrategy(brickerGameManager);
         }
         if(strategyIndex == EXTRA_PADDLE_COLLISION_STRATEGY_INDEX) {
-            return new ExtraPaddleStrategy(brickerGameManger);
+            return new ExtraPaddleStrategy(brickerGameManager);
         }
         if(strategyIndex == TURBO_STRATEGY_INDEX) {
-            return new TurboStrategy(brickerGameManger);
+            return new TurboStrategy(brickerGameManager);
         }
         if(strategyIndex == HEARTS_STRATEGY_INDEX) {
-            return new HeartsStrategy(brickerGameManger);
+            return new HeartsStrategy(brickerGameManager);
         }
-        return new DoubleBehaviorStrategy(brickerGameManger);
+        return new DoubleBehaviorStrategy(brickerGameManager);
     }
 }

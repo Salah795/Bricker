@@ -1,6 +1,6 @@
 package bricker.gameobjects;
 
-import bricker.main.BrickerGameManger;
+import bricker.main.BrickerGameManager;
 import danogl.gui.Sound;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
@@ -15,8 +15,8 @@ import danogl.util.Vector2;
  */
 public class Puck extends Ball{
 
-    //Reference to the BrickerGameManger used to remove this puck when it exits the window.
-    protected BrickerGameManger brickerGameManger;
+    //Reference to the BrickerGameManager used to remove this puck when it exits the window.
+    protected BrickerGameManager brickerGameManager;
 
     /**
      * Construct a new GameObject instance.
@@ -28,9 +28,9 @@ public class Puck extends Ball{
      *                       the GameObject will not be rendered.
      */
     public Puck(Vector2 topLeftCorner, Vector2 dimensions, Renderable renderable, Sound collisionSound,
-                BrickerGameManger brickerGameManger) {
+                BrickerGameManager brickerGameManager) {
         super(topLeftCorner, dimensions, renderable, collisionSound);
-        this.brickerGameManger = brickerGameManger;
+        this.brickerGameManager = brickerGameManager;
     }
 
     /**
@@ -44,9 +44,9 @@ public class Puck extends Ball{
     public void update(float deltaTime) {
         super.update(deltaTime);
         double height = this.getCenter().y();
-        float windowHeight = this.brickerGameManger.getWindowDimensions().y();
+        float windowHeight = this.brickerGameManager.getWindowDimensions().y();
         if(height > windowHeight) {
-            this.brickerGameManger.removeObject(this);
+            this.brickerGameManager.removeObject(this);
         }
     }
 }
