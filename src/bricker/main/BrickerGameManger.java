@@ -214,9 +214,9 @@ public class BrickerGameManger extends GameManager {
     }
 
     public void incrementLivesCounter() {
-        System.out.println(loseCounter.value());
         livesCounterRenderable.setString(Integer.toString(loseCounter.value()));
         gameObjects().addGameObject(hearsList[loseCounter.value() - 1], Layer.UI);
+        updateLivesCounterColor();
     }
 
     public boolean getTurboMode() {
@@ -322,21 +322,25 @@ public class BrickerGameManger extends GameManager {
         return "";
     }
 
+    private void updateLivesCounterColor() {
+        switch (loseCounter.value()) {
+            case GREEN_COLOR_COUNTER:
+                livesCounterRenderable.setColor(Color.RED);
+                break;
+            case YELLOW_COLOR_COUNTER:
+                livesCounterRenderable.setColor(Color.YELLOW);
+                break;
+            default:
+                livesCounterRenderable.setColor(Color.GREEN);
+        }
+    }
+
     private String checkLose(double ballHeight) {
         if(ballHeight > windowDimensions.y()) {
             ball.setCenter(windowDimensions.mult(WINDOW_CENTER_FACTOR));
             loseCounter.decrement();
             livesCounterRenderable.setString(Integer.toString(loseCounter.value()));
-            switch (loseCounter.value()) {
-                case GREEN_COLOR_COUNTER:
-                    livesCounterRenderable.setColor(Color.RED);
-                    break;
-                case YELLOW_COLOR_COUNTER:
-                    livesCounterRenderable.setColor(Color.YELLOW);
-                    break;
-                default:
-                    livesCounterRenderable.setColor(Color.GREEN);
-            }
+            updateLivesCounterColor();
             gameObjects().removeGameObject(hearsList[loseCounter.value()], Layer.UI);
         }
         if (loseCounter.value() == 0){
