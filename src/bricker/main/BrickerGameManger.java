@@ -270,8 +270,6 @@ public class BrickerGameManger extends GameManager {
                 false);
         GameObject background = new GameObject(Vector2.ZERO, new Vector2(windowDimensions.x(),
                 windowDimensions.y()), backgroundImage);
-        //TODO check later...
-        CoordinateSpace CoordinateSpace = null;
         background.setCoordinateSpace(CoordinateSpace.CAMERA_COORDINATES);
         gameObjects().addGameObject(background, Layer.BACKGROUND);
     }
@@ -279,7 +277,6 @@ public class BrickerGameManger extends GameManager {
     private void createBricks() {
         CollisionStrategyFactory collisionStrategyFactory = new CollisionStrategyFactory();
         Renderable brickImage = imageReader.readImage(BRICK_IMAGE_PATH,false);
-        //TODO check the problem of cutting bricks in the right edge.
         int brickWidth = (int) (windowDimensions.x() / brickCols);
         for (int row = 0; row < this.brickRows; row++) {
             for (int col = 0; col < this.brickCols; col++) {
@@ -329,7 +326,6 @@ public class BrickerGameManger extends GameManager {
         return "";
     }
 
-    //TODO create a class for the LivesCounter.
     private void updateLivesCounterColor() {
         switch (loseCounter.value()) {
             case GREEN_COLOR_COUNTER:
