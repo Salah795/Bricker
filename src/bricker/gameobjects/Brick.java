@@ -6,6 +6,13 @@ import danogl.collisions.Collision;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
 
+/**
+ * Represents a brick object in the game.
+ * The brick can collide with the ball and is removed when hit,
+ * depending on its collision strategy.
+ *
+ * @author Salah Mahmied, Kais Sora.
+ */
 public class Brick extends GameObject {
     private final CollisionStrategy collisionStrategy;
 

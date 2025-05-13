@@ -34,6 +34,7 @@ public class BasicCollisionStrategy implements CollisionStrategy {
      * @param first  the first GameObject involved in the collision (expected to be a Brick)
      * @param second the second GameObject involved in the collision
      */
+    @Override
     public void onCollision(GameObject first, GameObject second) {
         this.brickerGameManager.removeBrick((Brick) first);
     }

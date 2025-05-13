@@ -70,8 +70,8 @@ public class DoubleBehaviorStrategy implements CollisionDecorator {
                 filledStrategies++;
                 chosenIndex = this.random.nextInt(FIRST_POSSIBLE_RANDOM_INDEX,
                         LAST_POSSIBLE_RANDOM_INDEX);
-                this.collisionStrategies[index] = this.collisionStrategyFactory.buildCollisionStrategy(chosenIndex,
-                        brickerGameManager);
+                this.collisionStrategies[index] = this.collisionStrategyFactory.
+                        buildCollisionStrategy(chosenIndex, brickerGameManager);
                 chosenIndex = this.random.nextInt(FIRST_POSSIBLE_RANDOM_INDEX,
                         LAST_POSSIBLE_RANDOM_INDEX);
                 this.collisionStrategies[POSSIBLE_STRATEGIES - 1] = this.collisionStrategyFactory.

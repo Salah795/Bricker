@@ -34,7 +34,8 @@ public class CollisionStrategyFactory {
      * @return a CollisionStrategy instance matching the strategyIndex;
      *         defaults to DoubleBehaviorStrategy if index is unrecognized
      */
-    public CollisionStrategy buildCollisionStrategy(int strategyIndex, BrickerGameManager brickerGameManager) {
+    public CollisionStrategy buildCollisionStrategy(int strategyIndex,
+                                                    BrickerGameManager brickerGameManager) {
         if(strategyIndex <= BASIC_COLLISION_STRATEGY_INDEX) {
             return new BasicCollisionStrategy(brickerGameManager);
         }

@@ -22,6 +22,8 @@ import java.util.Random;
 /**
  * The BrickerGameManager class extends GameManager to implement the classic brick-breaking game.
  * It handles game initialization, object creation, user input, game updates, and end-of-game logic.
+ *
+ * @author Salah Mahmied, Kais Sora.
  */
 public class BrickerGameManager extends GameManager {
     public static final int WALL_WIDTH = 10;
@@ -88,7 +90,8 @@ public class BrickerGameManager extends GameManager {
     private int extraPaddleCounter;
 
     /**
-     * Constructs a new BrickerGameManager with the specified window title, dimensions, and brick configuration.
+     * Constructs a new BrickerGameManager with the specified window title, dimensions,
+     * and brick configuration.
      *
      * @param windowTitle      the title of the game window
      * @param windowDimensions the size of the game window as a Vector2 (width, height)
