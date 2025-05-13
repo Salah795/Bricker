@@ -7,7 +7,7 @@ import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
 
 public class Brick extends GameObject {
-    private CollisionStrategy collisionStrategy;
+    private final CollisionStrategy collisionStrategy;
 
     /**
      * Construct a new GameObject instance.

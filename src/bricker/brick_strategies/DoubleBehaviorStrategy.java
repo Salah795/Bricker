@@ -10,10 +10,10 @@ public class DoubleBehaviorStrategy implements CollisionDecorator {
     private static final int LAST_POSSIBLE_RANDOM_INDEX = 10;
     private static final int POSSIBLE_STRATEGIES = 3;
 
-    private CollisionStrategy[] collisionStrategies;
-    private BrickerGameManger brickerGameManger;
-    private CollisionStrategyFactory collisionStrategyFactory;
-    private Random random;
+    private final BrickerGameManger brickerGameManger;
+    private final CollisionStrategyFactory collisionStrategyFactory;
+    private final Random random;
+    private final CollisionStrategy[] collisionStrategies;
     private int filledStrategies;
     private int currentPossibleIndex;
 

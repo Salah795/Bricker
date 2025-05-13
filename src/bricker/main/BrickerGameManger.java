@@ -61,18 +61,18 @@ public class BrickerGameManger extends GameManager {
     private static final int FALLEN_HEART_VELOCITY = 100;
     private static final int FIRST_POSSIBLE_RANDOM_INDEX = 6;
 
-    private ImageReader imageReader;
-    private SoundReader soundReader;
     private final int brickRows;
     private final int brickCols;
     private final Vector2 paddleSizes;
+    private final Counter loseCounter;
+    private ImageReader imageReader;
+    private SoundReader soundReader;
     private Renderable heartImage;
     private Ball ball;
     private int turboModeInitialCounter;
     private GameObject[] hearsList;
     private Vector2 windowDimensions;
     private WindowController windowController;
-    private Counter loseCounter;
     private TextRenderable livesCounterRenderable;
     private Counter bricksCounter;
     private UserInputListener inputListener;
@@ -310,9 +310,9 @@ public class BrickerGameManger extends GameManager {
 
     private void checkForGameEnd() {
         double ballHeight = ball.getCenter().y();
-        String prompt = "";
+        String prompt;
         prompt = checkLose(ballHeight);
-        if(prompt.equals("")) {
+        if(prompt.isEmpty()) {
             prompt = checkWin();
         }
         checkPlayAgain(prompt);

@@ -5,14 +5,13 @@ import danogl.GameObject;
 import danogl.collisions.Collision;
 import danogl.gui.UserInputListener;
 import danogl.gui.rendering.Renderable;
-import danogl.util.Counter;
 import danogl.util.Vector2;
 
 public class ExtraPaddle extends Paddle{
     private static final int MAX_COLLISIONS = 4;
 
+    private final BrickerGameManger brickerGameManger;
     private int collisionsCounter;
-    private BrickerGameManger brickerGameManger;
 
     /**
      * Construct a new GameObject instance.

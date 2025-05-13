@@ -7,7 +7,7 @@ import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
 
 public class Ball extends GameObject {
-    private Sound collisionSound;
+    private final Sound collisionSound;
     private int collisionCounter;
 
     /**

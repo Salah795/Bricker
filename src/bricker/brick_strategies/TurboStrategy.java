@@ -12,7 +12,6 @@ public class TurboStrategy extends BasicCollisionStrategy{
     @Override
     public void onCollision(GameObject first, GameObject second) {
         super.onCollision(first, second);
-        //TODO try to replace instanceof with something else.
         if(!(second instanceof Puck) && !brickerGameManger.getTurboMode()) {
             brickerGameManger.transferBallIntoTurboMode();
         }

@@ -6,8 +6,6 @@ import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
 
 public class Wall extends GameObject {
-
-
     /**
      * Construct a new GameObject instance.
      *

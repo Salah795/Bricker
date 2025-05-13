@@ -2,7 +2,6 @@ package bricker.brick_strategies;
 
 import bricker.main.BrickerGameManger;
 import danogl.GameObject;
-import danogl.util.Counter;
 import danogl.util.Vector2;
 
 public class ExtraPaddleStrategy extends BasicCollisionStrategy{
