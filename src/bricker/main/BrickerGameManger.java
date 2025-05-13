@@ -451,7 +451,7 @@ public class BrickerGameManger extends GameManager {
      * and resets ball position.
      *
      * @param ballHeight the Y-coordinate of the ball center
-     * @return the lose prompt string if no lives remain; empty string otherwise
+     * @return the loose prompt string if no lives remain; empty string otherwise
      */
     private String checkLose(double ballHeight) {
         if(ballHeight > windowDimensions.y()) {
