@@ -192,7 +192,6 @@ public class BrickerGameManger extends GameManager {
 
     public void createExtraPaddle(Vector2 location) {
         if(this.extraPaddleCounter == 0) {
-            //TODO check if there is a better design than this.
             extraPaddleCounter++;
             ExtraPaddle extraPaddle = new ExtraPaddle(location, this.paddleSizes, paddleImage, inputListener,
                     this);
@@ -279,11 +278,11 @@ public class BrickerGameManger extends GameManager {
         Renderable brickImage = imageReader.readImage(BRICK_IMAGE_PATH,false);
         int brickWidth = (int) (windowDimensions.x() / brickCols);
         for (int row = 0; row < this.brickRows; row++) {
-            for (int col = 0; col < this.brickCols; col++) {
+            for (int column = 0; column < this.brickCols; column++) {
                 CollisionStrategy collisionStrategy = collisionStrategyFactory.buildCollisionStrategy(
                         this.random.nextInt(FIRST_POSSIBLE_RANDOM_INDEX, STRATEGIES_INDEX_BOUND + 1),
                         this);
-                GameObject brick = new Brick(new Vector2(col * (brickWidth + DISTANCE_BETWEEN_BRICKS),
+                GameObject brick = new Brick(new Vector2(column * (brickWidth + DISTANCE_BETWEEN_BRICKS),
                         WALL_WIDTH + (row * BRICK_HEIGHT)), new Vector2(brickWidth, BRICK_HEIGHT),
                         brickImage, collisionStrategy);
                 gameObjects().addGameObject(brick, Layer.STATIC_OBJECTS);

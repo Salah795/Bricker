@@ -5,7 +5,7 @@ import danogl.GameObject;
 
 import java.util.Random;
 
-public class DoubleBehaviorStrategy implements CollisionStrategy {
+public class DoubleBehaviorStrategy implements CollisionDecorator {
     private static final int FIRST_POSSIBLE_RANDOM_INDEX = 6;
     private static final int LAST_POSSIBLE_RANDOM_INDEX = 10;
     private static final int POSSIBLE_STRATEGIES = 3;
