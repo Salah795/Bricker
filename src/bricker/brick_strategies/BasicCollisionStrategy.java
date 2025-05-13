@@ -14,7 +14,9 @@ import danogl.GameObject;
  */
 public class BasicCollisionStrategy implements CollisionStrategy {
 
-    //Reference to the game manager used to remove bricks and manage game state.
+    /**
+     * Reference to the game manager used to remove bricks and manage game state.
+     */
     protected BrickerGameManager brickerGameManager;
 
     /**

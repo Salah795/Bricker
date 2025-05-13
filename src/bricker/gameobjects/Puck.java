@@ -15,7 +15,9 @@ import danogl.util.Vector2;
  */
 public class Puck extends Ball{
 
-    //Reference to the BrickerGameManager used to remove this puck when it exits the window.
+    /**
+     * Reference to the BrickerGameManager used to remove this puck when it exits the window.
+     */
     protected BrickerGameManager brickerGameManager;
 
     /**

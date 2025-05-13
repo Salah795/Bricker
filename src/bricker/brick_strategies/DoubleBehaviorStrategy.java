@@ -15,31 +15,49 @@ import java.util.Random;
  */
 public class DoubleBehaviorStrategy implements CollisionDecorator {
 
-    //Minimum index (inclusive) for selecting a collision strategy at random.
+    /**
+     * Minimum index (inclusive) for selecting a collision strategy at random.
+     */
     private static final int FIRST_POSSIBLE_RANDOM_INDEX = 6;
 
-    //Maximum index (inclusive) for selecting a collision strategy at random.
+    /**
+     * Maximum index (inclusive) for selecting a collision strategy at random.
+     */
     private static final int LAST_POSSIBLE_RANDOM_INDEX = 10;
 
-    //Total number of strategies to select and execute on collision.
+    /**
+     * Total number of strategies to select and execute on collision.
+     */
     private static final int POSSIBLE_STRATEGIES = 3;
 
-    //Reference to the Bricker game manager for applying collision effects.
+    /**
+     * Reference to the Bricker game manager for applying collision effects.
+     */
     private final BrickerGameManager brickerGameManager;
 
-    //Factory used to create collision strategy instances based on an index.
+    /**
+     * Factory used to create collision strategy instances based on an index.
+     */
     private final CollisionStrategyFactory collisionStrategyFactory;
 
-    //Random number generator for selecting strategy indices.
+    /**
+     * Random number generator for selecting strategy indices.
+     */
     private final Random random;
 
-    //Array holding the selected collision strategies to execute.
+    /**
+     * Array holding the selected collision strategies to execute.
+     */
     private final CollisionStrategy[] collisionStrategies;
 
-    //Number of strategies currently populated in the strategies array.
+    /**
+     * Number of strategies currently populated in the strategies array.
+     */
     private int filledStrategies;
 
-    //Upper bound for random index selection during strategy choice.
+    /**
+     * Upper bound for random index selection during strategy choice.
+     */
     private int currentPossibleIndex;
 
     /**

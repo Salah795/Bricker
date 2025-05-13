@@ -11,19 +11,29 @@ import bricker.main.BrickerGameManager;
  */
 public class CollisionStrategyFactory {
 
-    //Index for the basic collision strategy that simply removes the brick.
+    /**
+     * Index for the basic collision strategy that simply removes the brick.
+     */
     private static final int BASIC_COLLISION_STRATEGY_INDEX = 5;
 
-    //Index for the strategy that spawns pucks when a brick is hit.
+    /**
+     * Index for the strategy that spawns pucks when a brick is hit.
+     */
     private static final int PUCKS_COLLISION_STRATEGY_INDEX = 6;
 
-    //Index for the strategy that spawns an extra paddle on collision.
+    /**
+     * Index for the strategy that spawns an extra paddle on collision.
+     */
     private static final int EXTRA_PADDLE_COLLISION_STRATEGY_INDEX = 7;
 
-    //Index for the turbo mode strategy that boosts ball speed.
+    /**
+     * Index for the turbo mode strategy that boosts ball speed.
+     */
     private static final int TURBO_STRATEGY_INDEX = 8;
 
-    //Index for the strategy that awards extra lives (hearts) on collision.
+    /**
+     * Index for the strategy that awards extra lives (hearts) on collision.
+     */
     private static final int HEARTS_STRATEGY_INDEX = 9;
 
     /**

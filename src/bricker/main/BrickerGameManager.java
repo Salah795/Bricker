@@ -107,6 +107,15 @@ public class BrickerGameManager extends GameManager {
         this.loseCounter = new Counter(MAX_LOSE);
     }
 
+    /**
+     * Initializes the game by setting up the required game objects, counters, and initial configurations.
+     * This method overrides the `initializeGame` method in the parent class to include game-specific logic.
+     *
+     * @param imageReader      Utility for reading and handling image resources.
+     * @param soundReader      Utility for reading and handling sound resources.
+     * @param inputListener    Listener for user input, such as key presses.
+     * @param windowController Controller for window-related operations like resizing and resetting.
+     */
     @Override
     public void initializeGame(
             ImageReader imageReader,
@@ -178,6 +187,14 @@ public class BrickerGameManager extends GameManager {
         this.gameObjects().removeGameObject(object);
     }
 
+    /**
+     * Updates the game state every frame.
+     * This method is called repeatedly during the game loop to update
+     * game logic such as turbo mode handling and checking for game
+     * end conditions.
+     *
+     * @param deltaTime The time elapsed (in seconds) since the last frame update.
+     */
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
