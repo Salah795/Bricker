@@ -8,11 +8,24 @@ import danogl.util.Vector2;
 
 import java.awt.event.KeyEvent;
 
+/**
+ * Paddle represents the player's paddle in the Bricker game.
+ * <p>
+ * It handles user input to move left and right and constrains movement
+ * within the game window boundaries.
+ *
+ * @author Salah Mahmied, Kais Sora.
+ */
 public class Paddle extends GameObject {
+
+    //The movement speed of the paddle in pixels per second.
     private static final float MOVMENT_SPEED = 300;
 
-    private UserInputListener inputListener;
-    private Vector2 windowDimensions;
+    //Listener for user keyboard input to control paddle movement.
+    private final UserInputListener inputListener;
+
+    //Dimensions of the game window, used to clamp paddle position.
+    private final Vector2 windowDimensions;
 
     /**
      * Construct a new GameObject instance.
@@ -22,8 +35,6 @@ public class Paddle extends GameObject {
      * @param dimensions       Width and height in window coordinates.
      * @param renderable       The renderable representing the object. Can be null, in which case
      *                         the GameObject will not be rendered.
-     * @param inputListener
-     * @param windowDimensions
      */
     public Paddle(Vector2 topLeftCorner, Vector2 dimensions, Renderable renderable,
                   UserInputListener inputListener, Vector2 windowDimensions) {

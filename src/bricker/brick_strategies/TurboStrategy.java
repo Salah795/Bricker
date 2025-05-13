@@ -4,7 +4,20 @@ import bricker.gameobjects.Puck;
 import bricker.main.BrickerGameManger;
 import danogl.GameObject;
 
+/**
+ * Collision strategy that activates turbo mode on the ball upon collision.
+ * <p>
+ * Extends BasicCollisionStrategy by transferring the ball into turbo mode
+ * unless the collider is a puck and turbo is already active.
+ *
+ * @author Salah Mahmied, Kais Sora.
+ */
 public class TurboStrategy extends BasicCollisionStrategy{
+    /**
+     * Constructs a TurboStrategy with the specified game manager.
+     *
+     * @param brickerGameManger the game manager to handle turbo mode activation
+     */
     public TurboStrategy(BrickerGameManger brickerGameManger) {
         super(brickerGameManger);
     }
