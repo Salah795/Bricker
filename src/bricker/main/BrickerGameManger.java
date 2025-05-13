@@ -59,6 +59,7 @@ public class BrickerGameManger extends GameManager {
     private static final int TURBO_MODE_MAX_COLLISIONS = 6;
     private static final int PUCKS_PER_BRICK = 2;
     private static final int FALLEN_HEART_VELOCITY = 100;
+    private static final int FIRST_POSSIBLE_RANDOM_INDEX = 6;
 
     private ImageReader imageReader;
     private SoundReader soundReader;
@@ -283,7 +284,7 @@ public class BrickerGameManger extends GameManager {
         for (int row = 0; row < this.brickRows; row++) {
             for (int col = 0; col < this.brickCols; col++) {
                 CollisionStrategy collisionStrategy = collisionStrategyFactory.buildCollisionStrategy(
-                        this.random.nextInt(1, STRATEGIES_INDEX_BOUND + 1),
+                        this.random.nextInt(FIRST_POSSIBLE_RANDOM_INDEX, STRATEGIES_INDEX_BOUND + 1),
                         this);
                 GameObject brick = new Brick(new Vector2(col * (brickWidth + DISTANCE_BETWEEN_BRICKS),
                         WALL_WIDTH + (row * BRICK_HEIGHT)), new Vector2(brickWidth, BRICK_HEIGHT),

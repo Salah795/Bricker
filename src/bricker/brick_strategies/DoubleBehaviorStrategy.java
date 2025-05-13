@@ -15,9 +15,11 @@ public class DoubleBehaviorStrategy implements CollisionStrategy {
     private CollisionStrategyFactory collisionStrategyFactory;
     private Random random;
     private int filledStrategies;
+    private int currentPossibleIndex;
 
     public DoubleBehaviorStrategy(BrickerGameManger brickerGameManger) {
         this.collisionStrategies = new CollisionStrategy[POSSIBLE_STRATEGIES];
+        this.currentPossibleIndex = LAST_POSSIBLE_RANDOM_INDEX;
         this.filledStrategies = POSSIBLE_STRATEGIES - 1;
         this.brickerGameManger = brickerGameManger;
         this.collisionStrategyFactory = new CollisionStrategyFactory();
@@ -28,10 +30,9 @@ public class DoubleBehaviorStrategy implements CollisionStrategy {
     public void chooseStrategies() {
         for(int index = 0; index < POSSIBLE_STRATEGIES - 1; index++) {
             int chosenIndex = this.random.nextInt(FIRST_POSSIBLE_RANDOM_INDEX,
-                    LAST_POSSIBLE_RANDOM_INDEX + 1);
-            this.collisionStrategies[index] = this.collisionStrategyFactory.buildCollisionStrategy(chosenIndex,
-                    brickerGameManger);
+                    currentPossibleIndex + 1);
             if(chosenIndex == LAST_POSSIBLE_RANDOM_INDEX) {
+                this.currentPossibleIndex--;
                 filledStrategies++;
                 chosenIndex = this.random.nextInt(FIRST_POSSIBLE_RANDOM_INDEX,
                         LAST_POSSIBLE_RANDOM_INDEX);
@@ -41,13 +42,16 @@ public class DoubleBehaviorStrategy implements CollisionStrategy {
                         LAST_POSSIBLE_RANDOM_INDEX);
                 this.collisionStrategies[POSSIBLE_STRATEGIES - 1] = this.collisionStrategyFactory.
                         buildCollisionStrategy(chosenIndex, brickerGameManger);
+            } else {
+                this.collisionStrategies[index] = this.collisionStrategyFactory.
+                        buildCollisionStrategy(chosenIndex, brickerGameManger);
             }
         }
     }
 
     @Override
     public void onCollision(GameObject first, GameObject second) {
-        for(int index = 0; index < filledStrategies - 1; index++) {
+        for(int index = 0; index < filledStrategies; index++) {
             this.collisionStrategies[index].onCollision(first, second);
         }
     }
