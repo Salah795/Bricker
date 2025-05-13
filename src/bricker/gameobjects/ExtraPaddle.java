@@ -13,7 +13,6 @@ public class ExtraPaddle extends Paddle{
 
     private int collisionsCounter;
     private BrickerGameManger brickerGameManger;
-    private Counter counter;
 
     /**
      * Construct a new GameObject instance.
@@ -27,11 +26,9 @@ public class ExtraPaddle extends Paddle{
      * @param brickerGameManger
      */
     public ExtraPaddle(Vector2 topLeftCorner, Vector2 dimensions, Renderable renderable,
-                       UserInputListener inputListener, BrickerGameManger brickerGameManger,
-                       Counter counter) {
+                       UserInputListener inputListener, BrickerGameManger brickerGameManger) {
         super(topLeftCorner, dimensions, renderable, inputListener, brickerGameManger.getWindowDimensions());
         this.collisionsCounter = 0;
-        this.counter = counter;
         this.brickerGameManger = brickerGameManger;
     }
 
@@ -40,7 +37,6 @@ public class ExtraPaddle extends Paddle{
         super.onCollisionEnter(other, collision);
         this.collisionsCounter++;
         if(this.collisionsCounter == MAX_COLLISIONS) {
-            this.counter.decrement();
             this.brickerGameManger.removeObject(this);
         }
 

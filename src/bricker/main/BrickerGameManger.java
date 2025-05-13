@@ -79,6 +79,7 @@ public class BrickerGameManger extends GameManager {
     private ImageRenderable paddleImage;
     private boolean turboMode;
     private Paddle mainPaddle;
+    private int extraPaddleCounter;
 
     public BrickerGameManger(String windowTitle , Vector2 windowDimensions, int brickRows, int brickCols) {
         super(windowTitle, windowDimensions);
@@ -107,6 +108,7 @@ public class BrickerGameManger extends GameManager {
         createBall();
 
         //create paddles
+        this.extraPaddleCounter = 0;
         createPaddle();
 
         //create walls
@@ -187,10 +189,14 @@ public class BrickerGameManger extends GameManager {
 
     public float getMainPaddleHeight() { return this.mainPaddle.getCenter().y(); }
 
-    public void createExtraPaddle(Vector2 location, Counter counter) {
-        ExtraPaddle extraPaddle = new ExtraPaddle(location, this.paddleSizes, paddleImage, inputListener,
-                this, counter);
-        gameObjects().addGameObject(extraPaddle);
+    public void createExtraPaddle(Vector2 location) {
+        if(this.extraPaddleCounter == 0) {
+            //TODO check if there is a better design than this.
+            extraPaddleCounter++;
+            ExtraPaddle extraPaddle = new ExtraPaddle(location, this.paddleSizes, paddleImage, inputListener,
+                    this);
+            gameObjects().addGameObject(extraPaddle);
+        }
     }
 
     public void transferBallIntoTurboMode() {
@@ -322,6 +328,7 @@ public class BrickerGameManger extends GameManager {
         return "";
     }
 
+    //TODO create a class for the LivesCounter.
     private void updateLivesCounterColor() {
         switch (loseCounter.value()) {
             case GREEN_COLOR_COUNTER:

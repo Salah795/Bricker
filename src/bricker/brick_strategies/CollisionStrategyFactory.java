@@ -22,6 +22,9 @@ public class CollisionStrategyFactory {
         if(strategyIndex == TURBO_STRATEGY_INDEX) {
             return new TurboStrategy(brickerGameManger);
         }
-        return new HeartsStrategy(brickerGameManger);
+        if(strategyIndex == HEARTS_STRATEGY_INDEX) {
+            return new HeartsStrategy(brickerGameManger);
+        }
+        return new DoubleBehaviorStrategy(brickerGameManger);
     }
 }
