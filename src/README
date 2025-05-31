@@ -1,6 +1,3 @@
-salah.taher,kaissora13
-212001432,214472490
-
 1. We decided to keep the responsibility of adding and removing elements to the
 BrickerGameManager class and passed instance of the BrickerGameManager class to
 the constructor of the BasicCollisionStrategy class with creating a public method
